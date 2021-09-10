@@ -80,7 +80,11 @@
         </div>
         <div class="col-md-10">
             <label class="checkbox-inline">
-                @if (Model.InterestedInCSharp == true)
+               
+                @Html.CheckBox("CSharp", Model.InterestedInCSharp.Value)
+
+
+                 @*@if (Model.InterestedInCSharp == true)
                 {
                     @Html.CheckBox("cSharp", true)
 
@@ -89,25 +93,20 @@
                 {
                     @Html.CheckBox("cSharp", false)
 
-                }
+                }*@
                 C#
             </label>
             <label class="checkbox-inline">
-                @if (Model.InterestedInJava == true)
-                {
-                    @Html.CheckBox("Java", true)
-
-                }
-                else
-                {
-                    @Html.CheckBox("Java", false)
-
-                }
+                @Html.CheckBox("Java",Model.InterestedInJava.Value)
+               
 
                 Java
             </label>
             <label class="checkbox-inline">
-                @if (Model.InterestedInPython == true)
+                @Html.CheckBox("Python", Model.InterestedInPython.Value)
+
+
+                 @*@if (Model.InterestedInPython == true)
                 {
                     @Html.CheckBox("Python", true)
 
@@ -116,7 +115,7 @@
                 {
                     @Html.CheckBox("Python", false)
 
-                }
+                }*@
 
                 Python
             </label>
@@ -128,8 +127,8 @@
 
 
         <div class="form-group">
-            <div class="col-md-offset-4 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary btn-block" />
             </div>
         </div>
     </div>
