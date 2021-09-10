@@ -1,0 +1,75 @@
+﻿@model IEnumerable<RegisterationSystem.Models.tbl_users>
+
+@{
+    ViewBag.Title = "UsersList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UsersList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestedInCSharp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestedInJava)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterestedInPython)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterestedInCSharp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterestedInJava)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterestedInPython)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {id=item.UserId} , htmlAttributes: new{@class = "btn btn-primary"}) |
+            @Html.ActionLink("Delete", "Delete","Home", new {UserId = item.UserId} , htmlAttributes: new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

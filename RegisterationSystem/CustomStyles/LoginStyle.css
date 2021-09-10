@@ -1,0 +1,40 @@
+﻿body {
+}
+
+h2 {
+    padding-left : 60px;
+    font-weight : bold;
+    font-family : 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.form-horizontal{
+    height : 450px;
+    margin-top : 50px;
+}
+
+
+#LoginFormLayout #LoginForm  input[type ="text"],
+#LoginFormLayout #LoginForm .input-group-addon {
+    background : none;
+    border : none;
+    box-shadow : none;
+    outline : none;
+    border-bottom : 1px solid #ddd;
+}
+#LoginFormLayout #LoginImage {
+    border-right : 1px solid #ddd;
+}
+#LoginFormLayout {
+    background-color : #fff;
+    padding : 40px 20px;
+    margin-top : 20px;
+}
+#LoginFormLayout #LoginForm input[type ="submit"]
+{
+    background-color : #273c75 ;
+    border-radius : 50px;
+    
+    height : 40px;
+    width : 100px;
+}
