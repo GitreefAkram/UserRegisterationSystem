@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_city">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_users" Relationship="Self.FK_tbl_users_tbl_city" FromRole="tbl_city" ToRole="tbl_users" />
+  </EntityType>
   <EntityType Name="tbl_users">
     <Key>
       <PropertyRef Name="UserId" />
@@ -12,8 +30,28 @@
     <Property Name="InterestedInCSharp" Type="Boolean" />
     <Property Name="InterestedInJava" Type="Boolean" />
     <Property Name="InterestedInPython" Type="Boolean" />
+    <Property Name="CityID" Type="Int32" />
+    <NavigationProperty Name="tbl_city" Relationship="Self.FK_tbl_users_tbl_city" FromRole="tbl_users" ToRole="tbl_city" />
   </EntityType>
+  <Association Name="FK_tbl_users_tbl_city">
+    <End Role="tbl_city" Type="Self.tbl_city" Multiplicity="0..1" />
+    <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_city">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="tbl_users">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_city" EntityType="Self.tbl_city" />
     <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+    <AssociationSet Name="FK_tbl_users_tbl_city" Association="Self.FK_tbl_users_tbl_city">
+      <End Role="tbl_city" EntitySet="tbl_city" />
+      <End Role="tbl_users" EntitySet="tbl_users" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

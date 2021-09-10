@@ -115,37 +115,47 @@ namespace RegisterationSystem.Controllers
         {
             Entities db = new Entities();
             var user = db.tbl_users.Find(id);
+            user.InterestedInCSharp = (user.InterestedInCSharp == null) ? false : user.InterestedInCSharp;
+            user.InterestedInJava = (user.InterestedInJava == null) ? false : user.InterestedInJava;
+            user.InterestedInPython = (user.InterestedInPython == null) ? false : user.InterestedInPython;
+            var CityList = db.tbl_city.ToList();
+            ViewBag.CityList = new SelectList(CityList, "CityID", "CityName");
             return View(user);
         }
         [HttpPost]
         public ActionResult Edit(tbl_users Objuser , String cSharp, String Java, String Python)
         {
-            if (cSharp == "true")
-            {
-                Objuser.InterestedInCSharp = true;
-            }
-            else
-            {
-                Objuser.InterestedInCSharp = false;
-            }
-            if (Java == "true")
-            {
-                Objuser.InterestedInJava = true;
-            }
-            else
-            {
-                Objuser.InterestedInJava = false;
+            Objuser.InterestedInCSharp = (cSharp == "true") ? true : false;
+            Objuser.InterestedInJava = (Java == "true") ? true : false;
+            Objuser.InterestedInPython = (Python == "true") ? true : false;
 
-            }
-            if (Python == "true")
-            {
-                Objuser.InterestedInPython = true;
-            }
-            else
-            {
-                Objuser.InterestedInPython = false;
 
-            }
+            //if (cSharp == "true")
+            //{
+            //    Objuser.InterestedInCSharp = true;
+            //}
+            //else
+            //{
+            //    Objuser.InterestedInCSharp = false;
+            //}
+            //if (Java == "true")
+            //{
+            //    Objuser.InterestedInJava = true;
+            //}
+            //else
+            //{
+            //    Objuser.InterestedInJava = false;
+
+            //}
+            //if (Python == "true")
+            //{
+            //    Objuser.InterestedInPython = true;
+            //}
+            //else
+            //{
+            //    Objuser.InterestedInPython = false;
+
+            //}
 
             Entities db = new Entities();
             db.Entry(Objuser).State = System.Data.Entity.EntityState.Modified;

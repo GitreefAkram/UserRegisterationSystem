@@ -25,6 +25,8 @@ namespace RegisterationSystem.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<tbl_city> tbl_city { get; set; }
         public virtual DbSet<tbl_users> tbl_users { get; set; }
     }
 }

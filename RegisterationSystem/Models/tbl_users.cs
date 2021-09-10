@@ -22,5 +22,8 @@ namespace RegisterationSystem.Models
         public Nullable<bool> InterestedInCSharp { get; set; }
         public Nullable<bool> InterestedInJava { get; set; }
         public Nullable<bool> InterestedInPython { get; set; }
+        public Nullable<int> CityID { get; set; }
+    
+        public virtual tbl_city tbl_city { get; set; }
     }
 }

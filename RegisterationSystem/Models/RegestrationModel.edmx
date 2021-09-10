@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="RegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tbl_city">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tbl_users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -17,15 +34,52 @@
           <Property Name="InterestedInCSharp" Type="bit" />
           <Property Name="InterestedInJava" Type="bit" />
           <Property Name="InterestedInPython" Type="bit" />
+          <Property Name="CityID" Type="int" />
         </EntityType>
+        <Association Name="FK_tbl_users_tbl_city">
+          <End Role="tbl_city" Type="Self.tbl_city" Multiplicity="0..1" />
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_city">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="tbl_users">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RegistrationModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_city" EntityType="Self.tbl_city" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_users" EntityType="Self.tbl_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_users_tbl_city" Association="Self.FK_tbl_users_tbl_city">
+            <End Role="tbl_city" EntitySet="tbl_city" />
+            <End Role="tbl_users" EntitySet="tbl_users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_city">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_users" Relationship="Self.FK_tbl_users_tbl_city" FromRole="tbl_city" ToRole="tbl_users" />
+        </EntityType>
         <EntityType Name="tbl_users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -38,9 +92,29 @@
           <Property Name="InterestedInCSharp" Type="Boolean" />
           <Property Name="InterestedInJava" Type="Boolean" />
           <Property Name="InterestedInPython" Type="Boolean" />
+          <Property Name="CityID" Type="Int32" />
+          <NavigationProperty Name="tbl_city" Relationship="Self.FK_tbl_users_tbl_city" FromRole="tbl_users" ToRole="tbl_city" />
         </EntityType>
+        <Association Name="FK_tbl_users_tbl_city">
+          <End Role="tbl_city" Type="Self.tbl_city" Multiplicity="0..1" />
+          <End Role="tbl_users" Type="Self.tbl_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_city">
+              <PropertyRef Name="CityID" />
+            </Principal>
+            <Dependent Role="tbl_users">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tbl_city" EntityType="Self.tbl_city" />
           <EntitySet Name="tbl_users" EntityType="Self.tbl_users" />
+          <AssociationSet Name="FK_tbl_users_tbl_city" Association="Self.FK_tbl_users_tbl_city">
+            <End Role="tbl_city" EntitySet="tbl_city" />
+            <End Role="tbl_users" EntitySet="tbl_users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -48,6 +122,25 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RegistrationModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RegistrationModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_city">
+            <EntityTypeMapping TypeName="RegistrationModel.tbl_city">
+              <MappingFragment StoreEntitySet="tbl_city">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbl_users">
             <EntityTypeMapping TypeName="RegistrationModel.tbl_users">
               <MappingFragment StoreEntitySet="tbl_users">
@@ -59,6 +152,7 @@
                 <ScalarProperty Name="InterestedInCSharp" ColumnName="InterestedInCSharp" />
                 <ScalarProperty Name="InterestedInJava" ColumnName="InterestedInJava" />
                 <ScalarProperty Name="InterestedInPython" ColumnName="InterestedInPython" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

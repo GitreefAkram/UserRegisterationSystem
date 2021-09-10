@@ -161,6 +161,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RegestrationModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>RegestrationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_city.cs">
+      <DependentUpon>RegestrationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_users.cs">
       <DependentUpon>RegestrationModel.tt</DependentUpon>
     </Compile>
