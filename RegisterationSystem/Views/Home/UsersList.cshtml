@@ -27,7 +27,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.InterestedInCSharp)
         </th>
         <th>
@@ -35,7 +35,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.InterestedInPython)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -56,7 +56,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Gender)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.InterestedInCSharp)
         </td>
         <td>
@@ -64,7 +64,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.InterestedInPython)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new {id=item.UserId} , htmlAttributes: new{@class = "btn btn-primary"}) |
             @Html.ActionLink("Delete", "Delete","Home", new {UserId = item.UserId} , htmlAttributes: new { @class = "btn btn-danger" })

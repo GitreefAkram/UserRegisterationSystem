@@ -118,12 +118,39 @@ namespace RegisterationSystem.Controllers
             return View(user);
         }
         [HttpPost]
-        public ActionResult Edit(tbl_users user)
+        public ActionResult Edit(tbl_users Objuser , String cSharp, String Java, String Python)
         {
+            if (cSharp == "true")
+            {
+                Objuser.InterestedInCSharp = true;
+            }
+            else
+            {
+                Objuser.InterestedInCSharp = false;
+            }
+            if (Java == "true")
+            {
+                Objuser.InterestedInJava = true;
+            }
+            else
+            {
+                Objuser.InterestedInJava = false;
+
+            }
+            if (Python == "true")
+            {
+                Objuser.InterestedInPython = true;
+            }
+            else
+            {
+                Objuser.InterestedInPython = false;
+
+            }
+
             Entities db = new Entities();
-            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            db.Entry(Objuser).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("UserList");
+            return RedirectToAction("UsersList");
         }
 
 

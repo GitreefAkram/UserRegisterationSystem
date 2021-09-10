@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>tbl_users</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -50,34 +50,80 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Gender, "Male", new { @name = "gender" })
+
+                    Male
+                </label>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Gender, "Female", new { @name = "gender" })
+                    Female
+                </label>
+
+
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.InterestedInCSharp, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InterestedInCSharp, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.InterestedInCSharp, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        
+
+        
 
         <div class="form-group">
-            @Html.LabelFor(model => model.InterestedInJava, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InterestedInJava, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.InterestedInJava, "", new { @class = "text-danger" })
-            </div>
+
+        <div class="control-label col-md-2">
+
+            <label>
+                Interest
+            </label>
+
+        </div>
+        <div class="col-md-10">
+            <label class="checkbox-inline">
+                @if (Model.InterestedInCSharp == true)
+                {
+                    @Html.CheckBox("cSharp", true)
+
+                }
+                else
+                {
+                    @Html.CheckBox("cSharp", false)
+
+                }
+                C#
+            </label>
+            <label class="checkbox-inline">
+                @if (Model.InterestedInJava == true)
+                {
+                    @Html.CheckBox("Java", true)
+
+                }
+                else
+                {
+                    @Html.CheckBox("Java", false)
+
+                }
+
+                Java
+            </label>
+            <label class="checkbox-inline">
+                @if (Model.InterestedInPython == true)
+                {
+                    @Html.CheckBox("Python", true)
+
+                }
+                else
+                {
+                    @Html.CheckBox("Python", false)
+
+                }
+
+                Python
+            </label>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.InterestedInPython, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.InterestedInPython, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.InterestedInPython, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
+    </div>
 
 
 
