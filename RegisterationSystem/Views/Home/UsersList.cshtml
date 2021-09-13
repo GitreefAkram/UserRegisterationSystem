@@ -26,6 +26,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_city.CityName)
+        </th>
+
         @*<th>
             @Html.DisplayNameFor(model => model.InterestedInCSharp)
         </th>
@@ -55,6 +59,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Gender)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_city.CityName)
+        </td>
+
         @*<td>
             @Html.DisplayFor(modelItem => item.InterestedInCSharp)
         </td>

@@ -160,7 +160,7 @@ namespace RegisterationSystem.Controllers
             Entities db = new Entities();
             db.Entry(Objuser).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("UsersList");
+            return RedirectToAction("Edit" , new {id = Objuser.UserId});
         }
 
 
