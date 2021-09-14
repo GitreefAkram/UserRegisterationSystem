@@ -57,6 +57,7 @@ namespace RegisterationSystem.Controllers
 
             return RedirectToAction("UsersList");
         }
+       
 
         public ActionResult UsersList()
         {
@@ -119,7 +120,8 @@ namespace RegisterationSystem.Controllers
             user.InterestedInJava = (user.InterestedInJava == null) ? false : user.InterestedInJava;
             user.InterestedInPython = (user.InterestedInPython == null) ? false : user.InterestedInPython;
             var CityList = db.tbl_city.ToList();
-            ViewBag.CityList = new SelectList(CityList, "CityID", "CityName");
+            //viewbag.citylist = new selectlist(citylist, "cityid", "cityname");
+            user.CityList = new SelectList(CityList, "cityid", "cityname");
             return View(user);
         }
         [HttpPost]
@@ -160,7 +162,8 @@ namespace RegisterationSystem.Controllers
             Entities db = new Entities();
             db.Entry(Objuser).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Edit" , new {id = Objuser.UserId});
+            //return RedirectToAction("Edit",, new { id = Objuser.UserId });
+            return RedirectToAction("UsersList");
         }
 
 

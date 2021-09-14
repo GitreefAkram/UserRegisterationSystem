@@ -11,7 +11,9 @@ namespace RegisterationSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class tbl_users
     {
         public int UserId { get; set; }
@@ -23,7 +25,9 @@ namespace RegisterationSystem.Models
         public Nullable<bool> InterestedInJava { get; set; }
         public Nullable<bool> InterestedInPython { get; set; }
         public Nullable<int> CityID { get; set; }
-    
+        [DataType(DataType.Date)]
+        public Nullable<System.DateTime> DOB { get; set; }
+        public SelectList CityList { get; set; }
         public virtual tbl_city tbl_city { get; set; }
     }
 }

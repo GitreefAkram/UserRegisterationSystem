@@ -30,6 +30,7 @@
     <Property Name="InterestedInJava" Type="bit" />
     <Property Name="InterestedInPython" Type="bit" />
     <Property Name="CityID" Type="int" />
+    <Property Name="DOB" Type="date" />
   </EntityType>
   <Association Name="FK_tbl_users_tbl_city">
     <End Role="tbl_city" Type="Self.tbl_city" Multiplicity="0..1" />

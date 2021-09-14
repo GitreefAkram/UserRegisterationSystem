@@ -23,6 +23,7 @@
     <EntitySetMapping Name="tbl_users">
       <EntityTypeMapping TypeName="RegistrationModel.tbl_users">
         <MappingFragment StoreEntitySet="tbl_users">
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />

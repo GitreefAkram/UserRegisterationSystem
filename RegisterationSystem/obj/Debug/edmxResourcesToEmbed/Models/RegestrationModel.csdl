@@ -32,6 +32,7 @@
     <Property Name="InterestedInPython" Type="Boolean" />
     <Property Name="CityID" Type="Int32" />
     <NavigationProperty Name="tbl_city" Relationship="Self.FK_tbl_users_tbl_city" FromRole="tbl_users" ToRole="tbl_city" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
   </EntityType>
   <Association Name="FK_tbl_users_tbl_city">
     <End Role="tbl_city" Type="Self.tbl_city" Multiplicity="0..1" />

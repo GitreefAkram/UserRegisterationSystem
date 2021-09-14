@@ -105,6 +105,5 @@ C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSy
 C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSystem\bin\System.Web.Webpages.Razor.xml
 C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSystem\bin\System.Web.Helpers.xml
 C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSystem\bin\System.Web.Mvc.xml
-C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSystem\obj\Debug\RegisterationSystem.csprojResolveAssemblyReference.cache
 C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSystem\obj\Debug\RegisterationSystem.dll
 C:\Users\gitre\OneDrive\Documents\GitHub\UserRegisterationSystem\RegisterationSystem\obj\Debug\RegisterationSystem.pdb
