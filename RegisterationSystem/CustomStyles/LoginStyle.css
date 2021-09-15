@@ -20,14 +20,14 @@ h2 {
     border : none;
     box-shadow : none;
     outline : none;
-    border-bottom : 1px solid #ddd;
+    border-bottom :1px solid #ddd;
 }
 #LoginFormLayout #LoginImage {
     border-right : 1px solid #ddd;
 }
 #LoginFormLayout {
     background-color : #fff;
-    padding : 40px 20px;
+    padding : 40px 25px;
     margin-top : 20px;
 }
 #LoginFormLayout #LoginForm input[type ="submit"]

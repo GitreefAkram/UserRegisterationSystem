@@ -50,12 +50,31 @@ namespace RegisterationSystem.Controllers
         [HttpPost]
         public ActionResult Register(tbl_users user)
         {
-            Entities db = new Entities();
-            db.tbl_users.Add(user);
-            db.SaveChanges();
+            try
+            {
+                if (ModelState.IsValid)
+                { 
+                Entities db = new Entities();
+                db.tbl_users.Add(user);
+                db.SaveChanges();
+                TempData["msg"] = "Registered successfully !";
+                return RedirectToAction("Register");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = "Registration failed !";
+                return View();
+            }
+
+           
 
 
-            return RedirectToAction("UsersList");
+            
         }
        
 
@@ -127,9 +146,30 @@ namespace RegisterationSystem.Controllers
         [HttpPost]
         public ActionResult Edit(tbl_users Objuser , String cSharp, String Java, String Python)
         {
-            Objuser.InterestedInCSharp = (cSharp == "true") ? true : false;
-            Objuser.InterestedInJava = (Java == "true") ? true : false;
-            Objuser.InterestedInPython = (Python == "true") ? true : false;
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    Objuser.InterestedInCSharp = (cSharp == "true") ? true : false;
+                    Objuser.InterestedInJava = (Java == "true") ? true : false;
+                    Objuser.InterestedInPython = (Python == "true") ? true : false;
+                    Entities db = new Entities();
+                    db.Entry(Objuser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    //return RedirectToAction("Edit",, new { id = Objuser.UserId });
+                    return RedirectToAction("UsersList");
+                }
+                else
+                {
+                    return View();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+            
 
 
             //if (cSharp == "true")
@@ -159,11 +199,7 @@ namespace RegisterationSystem.Controllers
 
             //}
 
-            Entities db = new Entities();
-            db.Entry(Objuser).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-            //return RedirectToAction("Edit",, new { id = Objuser.UserId });
-            return RedirectToAction("UsersList");
+            
         }
 
 

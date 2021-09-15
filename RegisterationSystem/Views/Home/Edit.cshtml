@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.UserName, "Username is required", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -35,7 +35,7 @@
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Password, "Password is required", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -43,7 +43,7 @@
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Email, "Email is required", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -61,13 +61,9 @@
                 </label>
 
 
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Gender, "Gender is required", new { @class = "text-danger" })
             </div>
         </div>
-
-        
-
-        
 
         <div class="form-group">
 
@@ -77,14 +73,13 @@
                 Interest
             </label>
 
-        </div>
-        <div class="col-md-10">
-            <label class="checkbox-inline">
-               
-                @Html.CheckBox("CSharp", Model.InterestedInCSharp.Value)
+            <div class="col-md-10">
+                <label class="checkbox-inline">
+
+                    @Html.CheckBox("CSharp", Model.InterestedInCSharp.Value)
 
 
-                 @*@if (Model.InterestedInCSharp == true)
+                    @*@if (Model.InterestedInCSharp == true)
                 {
                     @Html.CheckBox("cSharp", true)
 
@@ -94,19 +89,19 @@
                     @Html.CheckBox("cSharp", false)
 
                 }*@
-                C#
-            </label>
-            <label class="checkbox-inline">
-                @Html.CheckBox("Java",Model.InterestedInJava.Value)
-               
-
-                Java
-            </label>
-            <label class="checkbox-inline">
-                @Html.CheckBox("Python", Model.InterestedInPython.Value)
+                    C#
+                </label>
+                <label class="checkbox-inline">
+                    @Html.CheckBox("Java", Model.InterestedInJava.Value)
 
 
-                 @*@if (Model.InterestedInPython == true)
+                    Java
+                </label>
+                <label class="checkbox-inline">
+                    @Html.CheckBox("Python", Model.InterestedInPython.Value)
+
+
+                    @*@if (Model.InterestedInPython == true)
                 {
                     @Html.CheckBox("Python", true)
 
@@ -117,9 +112,12 @@
 
                 }*@
 
-                Python
-            </label>
+                    Python
+                </label>
+            </div>
+          
         </div>
+        
 
 
     </div>
@@ -150,16 +148,12 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-primary btn-block" onclick="ShowAlert()"/>
+                    <input type="submit" value="Save" class="btn btn-primary btn-block"/>
                 </div>
             </div>
         </div>
 }
 <script>
-    function ShowAlert()
-    {
-        alert("Data saved ");
-    }
     
 
 </script>

@@ -13,13 +13,18 @@ namespace RegisterationSystem.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using System.Web.UI.WebControls;
 
     public partial class tbl_users
     {
         public int UserId { get; set; }
+        [Required]
         public string UserName { get; set; }
+        [Required]
         public string Password { get; set; }
+      
         public string Email { get; set; }
+        
         public string Gender { get; set; }
         public Nullable<bool> InterestedInCSharp { get; set; }
         public Nullable<bool> InterestedInJava { get; set; }
@@ -28,6 +33,7 @@ namespace RegisterationSystem.Models
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> DOB { get; set; }
         public SelectList CityList { get; set; }
+      
         public virtual tbl_city tbl_city { get; set; }
     }
 }

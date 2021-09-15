@@ -1,8 +1,8 @@
-﻿$(function ()
-{
-    $('.datetimepicker1').datetimepicker(
-        {
-            format:'L'
-     }
-     );
-});
+﻿//$(function ()
+//{
+//    $('.datetimepicker1').datetimepicker(
+//        {
+//            format:'L'
+//     }
+//     );
+//});
